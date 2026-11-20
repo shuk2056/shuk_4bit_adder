@@ -5,7 +5,7 @@
 // 
 // Create Date: 11/05/2026 09:15:59 AM
 // Design Name: 
-// Module Name: fourbitadd
+// Module Name: fourbitadd_reg
 // Project Name: 
 // Target Devices: 
 module fourbitadd(
