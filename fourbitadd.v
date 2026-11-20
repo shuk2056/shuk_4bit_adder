@@ -5,7 +5,7 @@
 // 
 // Create Date: 11/05/2026 09:15:59 AM
 // Design Name: 
-// Module Name: fourbitadd_reg
+// Module Name: fourbitadd
 // Project Name: 
 // Target Devices: 
 module fourbitadd(
@@ -34,30 +34,4 @@ module onebitadd (
 );
     assign sum  = a ^ b ^ cin;
     assign cout = (a & b) | (a & cin) | (b & cin);
-endmodule
-
-
-module fourbitadd_reg (
-    input            clk,
-    input            rst_n,
-    input      [3:0] A,
-    input      [3:0] B,
-    input            Cin,
-    output reg [4:0] S
-);
-    wire [4:0] sum_comb;
-
-    fourbitadd u_add (
-        .A   (A),
-        .B   (B),
-        .Cin (Cin),
-        .S   (sum_comb)
-    );
-
-    always @(posedge clk) begin
-        if (!rst_n)
-            S <= 5'b0;
-        else
-            S <= sum_comb;
-    end
 endmodule
