@@ -25,3 +25,39 @@ onebitadd nest3 (A[3], B[3], c3, S[3], S[4]);
 endmodule      
     
 
+module onebitadd (
+    input  a,
+    input  b,
+    input  cin,
+    output sum,
+    output cout
+);
+    assign sum  = a ^ b ^ cin;
+    assign cout = (a & b) | (a & cin) | (b & cin);
+endmodule
+
+
+module fourbitadd_reg (
+    input            clk,
+    input            rst_n,
+    input      [3:0] A,
+    input      [3:0] B,
+    input            Cin,
+    output reg [4:0] S
+);
+    wire [4:0] sum_comb;
+
+    fourbitadd u_add (
+        .A   (A),
+        .B   (B),
+        .Cin (Cin),
+        .S   (sum_comb)
+    );
+
+    always @(posedge clk) begin
+        if (!rst_n)
+            S <= 5'b0;
+        else
+            S <= sum_comb;
+    end
+endmodule
